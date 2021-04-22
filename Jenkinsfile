@@ -1,26 +1,45 @@
-pipeline {
+//pipeline {
+//
+//  agent {
+//    node {
+//      label 'agent1'
+//    }
+//  }
+//
+//  stages {
+//
+//    stage('Hello') {
+//      steps {
+//        echo "Hello"
+//      }
+//    }
+//
+//  }
+//
+//  post {
+//    always {
+//      echo "Post Action"
+//    }
+//  }
+//
+//}
+//
 
-  agent {
-    node {
-      label 'agent1'
-    }
+// ENVIRONMENT
+pipeline {
+  agent any
+
+  environment {
+    PROJECT_NAME = "ROBOSHOP"
   }
 
   stages {
 
-    stage('Hello') {
+    stage('One') {
       steps {
-        echo "Hello"
+        sh "echo ${PROJECT_NAME}"
       }
     }
 
   }
-
-  post {
-    always {
-      echo "Post Action"
-    }
-  }
-
 }
-
