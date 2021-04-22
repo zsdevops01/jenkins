@@ -38,7 +38,7 @@ pipeline {
     UBUNTU_SSH_CRED = credentials('UBUNTU-SSH')
   }
 
-  tool {
+  tools {
     maven 'mvn-3.6'
   }
 
