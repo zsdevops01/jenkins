@@ -31,6 +31,7 @@ pipeline {
 
   environment {
     PROJECT_NAME = "ROBOSHOP"
+    UBUNTU_SSH_CRED = credentials('UBUNTU-SSH')
   }
 
   stages {
@@ -38,6 +39,7 @@ pipeline {
     stage('One') {
       steps {
         sh "echo ${PROJECT_NAME}"
+        sh "env"
       }
     }
 
