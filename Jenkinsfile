@@ -76,6 +76,10 @@ pipeline {
 
     stage('Two') {
 
+      agent {
+        label 'ANSIBLE'
+      }
+
       environment {
         PROJECT_NAME = "TODO"
       }
