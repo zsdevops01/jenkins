@@ -55,6 +55,7 @@ pipeline {
       steps {
         sh "echo ${PROJECT_NAME}"
         sh "env"
+        sh "mvn compile"
       }
     }
 
