@@ -41,5 +41,16 @@ pipeline {
       }
     }
 
+    stage('Two') {
+
+      environment {
+        PROJECT_NAME = "TODO"
+      }
+
+      steps {
+        sh "echo ${PROJECT_NAME}"
+      }
+    }
+
   }
 }
