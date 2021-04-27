@@ -21,18 +21,19 @@ def call(Map params = [:]) {
 
     stages {
 
-      stage('Prepare Artifacts - NGINX') {
-        when {
-          environment name: 'APP_TYPE', value: 'NGINX'
-        }
-        steps {
-          sh '''
+if(COMPONENT == "NGINX") {
+  stage('Prepare Artifacts - NGINX') {
+    when {
+      environment name: 'APP_TYPE', value: 'NGINX'
+    }
+    steps {
+      sh '''
           cd static
           zip -r ../${COMPONENT}.zip *
         '''
-        }
-      }
-
+    }
+  }
+}
       stage('Download Dependencies') {
         when {
           environment name: 'APP_TYPE', value: 'NODEJS'
@@ -73,7 +74,7 @@ def call(Map params = [:]) {
         }
         steps {
           sh '''
-          mvn package
+          mvn clean package
         '''
         }
       }
