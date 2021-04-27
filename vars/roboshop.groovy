@@ -28,12 +28,11 @@ def call(Map params = [:]) {
         }
         steps {
           script {
-            thing = new nexus()
-            thing.demos 'new'
+            prepare = new nexus()
+            prepare.make_artifacts 'frontend'
           }
           sh '''
-          cd static
-          zip -r ../${COMPONENT}.zip *
+          ls
         '''
         }
       }
