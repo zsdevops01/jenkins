@@ -2,6 +2,10 @@ def call(String COMPONENT) {
   pipeline {
     agent any
 
+    environment {
+      COMPONENT = COMPONENT
+    }
+
     stages {
 
       stage('Prepare Artifacts') {
