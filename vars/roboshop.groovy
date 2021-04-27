@@ -1,5 +1,5 @@
 def demos() {
-  echo 'Demo'
+  print 'Demo'
 }
 
 def call(Map params = [:]) {
