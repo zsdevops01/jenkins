@@ -23,6 +23,7 @@ def call(Map params = [:]) {
       stage('Prepare Artifacts') {
         steps {
           sh '''
+          sleep 60
           echo ${COMPONENT}
           cd static
           zip -r ../frontend.zip *
