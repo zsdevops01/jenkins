@@ -1,4 +1,4 @@
-def call() {
+def call(String COMPONENT) {
   pipeline {
     agent any
 
@@ -7,6 +7,7 @@ def call() {
       stage('Prepare Artifacts') {
         steps {
           sh '''
+          echo ${COMPONENT}
           cd static
           zip -r ../frontend.zip *
         '''
