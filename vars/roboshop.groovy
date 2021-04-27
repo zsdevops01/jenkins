@@ -6,7 +6,7 @@ def call(Map params = [:]) {
   args << params
 
   // End Default + Required Arguments
-  pipeline {
+  node {
     agent {
       label "${args.SLAVE_LABEL}"
     }
@@ -19,7 +19,7 @@ def call(Map params = [:]) {
       APP_TYPE      = "${args.APP_TYPE}"
     }
 
-    stages {
+    //stages {
 
 if(APP_TYPE == "NGINX") {
   stage('Prepare Artifacts - NGINX') {
@@ -110,7 +110,7 @@ if(APP_TYPE == "NGINX") {
         }
       }
 
-    }
+    //}
 
   }
 }
