@@ -1,20 +1,27 @@
-def call(String COMPONENT) {
+def call(Map params = [:]) {
+  // Start Default Arguments
+  def args = [
+          NEXUS                  : 'some',
+  ]
+  args << params
+
+  // End Default + Required Arguments
   pipeline {
     agent any
 
-//    environment {
-//      COMPONENT = COMPONENT
-//    }
+    environment {
+      COMPONENT = "${args.COMPONENT}"
+    }
 
     stages {
 
       stage('Prepare Artifacts') {
         steps {
-          sh """
+          sh '''
           echo ${COMPONENT}
           cd static
           zip -r ../frontend.zip *
-        """
+        '''
         }
       }
 
