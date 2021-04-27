@@ -1,3 +1,7 @@
+def demos() {
+  echo 'Demo'
+}
+
 def call(Map params = [:]) {
   // Start Default Arguments
   def args = [
@@ -6,7 +10,7 @@ def call(Map params = [:]) {
   args << params
 
   // End Default + Required Arguments
-  node {
+  pipeline {
     agent {
       label "${args.SLAVE_LABEL}"
     }
@@ -19,21 +23,23 @@ def call(Map params = [:]) {
       APP_TYPE      = "${args.APP_TYPE}"
     }
 
-    //stages {
+    stages {
 
-if(APP_TYPE == "NGINX") {
-  stage('Prepare Artifacts - NGINX') {
-    when {
-      environment name: 'APP_TYPE', value: 'NGINX'
-    }
-    steps {
-      sh '''
+      stage('Prepare Artifacts - NGINX') {
+        when {
+          environment name: 'APP_TYPE', value: 'NGINX'
+        }
+        steps {
+          script {
+            demos
+          }
+          sh '''
           cd static
           zip -r ../${COMPONENT}.zip *
         '''
-    }
-  }
-}
+        }
+      }
+
       stage('Download Dependencies') {
         when {
           environment name: 'APP_TYPE', value: 'NODEJS'
@@ -110,7 +116,7 @@ if(APP_TYPE == "NGINX") {
         }
       }
 
-    //}
+    }
 
   }
 }
