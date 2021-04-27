@@ -3,9 +3,21 @@ def nexus() {
   def execute_state=sh(returnStdout: true, script: command)
 }
 
-def make_artifacts(component) {
-  if(component == "frontend") {
-    command = "cd static && zip -r ../${component}.zip *"
+def make_artifacts(APP_TYPE, COMPONENT) {
+  if(APP_TYPE == "NGINX") {
+    command = "cd static && zip -r ../${COMPONENT}.zip *"
+    def execute_com=sh(returnStdout: true, script: command)
+    print execute_com
+  } else if(APP_TYPE == "NODEJS") {
+    command = "zip -r ${COMPONENT}.zip node_modules server.js"
+    def execute_com=sh(returnStdout: true, script: command)
+    print execute_com
+  } else if(APP_TYPE == "JAVA") {
+    command = "cp target/*.jar ${COMPONENT}.jar && zip -r ${COMPONENT}.zip ${COMPONENT}.jar"
+    def execute_com=sh(returnStdout: true, script: command)
+    print execute_com
+  } else if(APP_TYPE == "PYTHON") {
+    command = "zip -r ${COMPONENT}.zip payment.ini payment.py rabbitmq.py requirements.txt"
     def execute_com=sh(returnStdout: true, script: command)
     print execute_com
   }

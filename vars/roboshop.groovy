@@ -22,21 +22,6 @@ def call(Map params = [:]) {
 
     stages {
 
-      stage('Prepare Artifacts - NGINX') {
-        when {
-          environment name: 'APP_TYPE', value: 'NGINX'
-        }
-        steps {
-          script {
-            prepare = new nexus()
-            prepare.make_artifacts 'frontend'
-          }
-          sh '''
-          ls
-        '''
-        }
-      }
-
       stage('Download Dependencies') {
         when {
           environment name: 'APP_TYPE', value: 'NODEJS'
@@ -45,17 +30,6 @@ def call(Map params = [:]) {
         steps {
           sh '''
           npm install
-        '''
-        }
-      }
-
-      stage('Prepare Artifacts - NODEJS') {
-        when {
-          environment name: 'APP_TYPE', value: 'NODEJS'
-        }
-        steps {
-          sh '''
-          zip -r ${COMPONENT}.zip node_modules server.js
         '''
         }
       }
@@ -82,25 +56,17 @@ def call(Map params = [:]) {
         }
       }
 
-      stage('Prepare Artifacts - JAVA') {
+      stage('Prepare Artifacts') {
         when {
-          environment name: 'APP_TYPE', value: 'JAVA'
+          environment name: 'APP_TYPE', value: 'NGINX'
         }
         steps {
+          script {
+            prepare = new nexus()
+            prepare.make_artifacts ("${APP_TYPE}", "${COMPONENT}")
+          }
           sh '''
-          cp target/*.jar ${COMPONENT}.jar 
-          zip -r ${COMPONENT}.zip ${COMPONENT}.jar
-        '''
-        }
-      }
-
-      stage('Prepare Artifacts - PYHTON') {
-        when {
-          environment name: 'APP_TYPE', value: 'PYTHON'
-        }
-        steps {
-          sh '''
-          zip -r ${COMPONENT}.zip payment.ini payment.py rabbitmq.py requirements.txt 
+          ls
         '''
         }
       }
