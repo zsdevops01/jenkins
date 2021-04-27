@@ -21,7 +21,7 @@ def call(Map params = [:]) {
 
     stages {
 
-if(COMPONENT == "NGINX") {
+if(APP_TYPE == "NGINX") {
   stage('Prepare Artifacts - NGINX') {
     when {
       environment name: 'APP_TYPE', value: 'NGINX'
