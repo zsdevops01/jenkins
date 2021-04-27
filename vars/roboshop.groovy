@@ -78,7 +78,7 @@ def call(Map params = [:]) {
         }
       }
 
-      stage('Prepare Artifacts') {
+      stage('Prepare Artifacts - JAVA') {
         when {
           environment name: 'APP_TYPE', value: 'JAVA'
         }
@@ -90,7 +90,7 @@ def call(Map params = [:]) {
         }
       }
 
-      stage('Prepare Artifacts') {
+      stage('Prepare Artifacts - PYHTON') {
         when {
           environment name: 'APP_TYPE', value: 'PYTHON'
         }
