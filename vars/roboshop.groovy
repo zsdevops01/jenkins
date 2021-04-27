@@ -2,19 +2,19 @@ def call(String COMPONENT) {
   pipeline {
     agent any
 
-    environment {
-      COMPONENT = COMPONENT
-    }
+//    environment {
+//      COMPONENT = COMPONENT
+//    }
 
     stages {
 
       stage('Prepare Artifacts') {
         steps {
-          sh '''
+          sh """
           echo ${COMPONENT}
           cd static
           zip -r ../frontend.zip *
-        '''
+        """
         }
       }
 
