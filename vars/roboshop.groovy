@@ -1,6 +1,3 @@
-def demos() {
-  print 'Demo'
-}
 
 def call(Map params = [:]) {
   // Start Default Arguments
@@ -31,7 +28,8 @@ def call(Map params = [:]) {
         }
         steps {
           script {
-            demos
+            thing = new nexus()
+            thing.demos
           }
           sh '''
           cd static
