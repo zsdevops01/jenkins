@@ -22,12 +22,35 @@ def call(Map params = [:]) {
 
       stage('Prepare Artifacts') {
         when {
-          environment name: 'COMPONENT', value: 'frontend'
+          environment name: 'APP_TYPE', value: 'NGINX'
         }
         steps {
           sh '''
           cd static
           zip -r ../${COMPONENT}.zip *
+        '''
+        }
+      }
+
+      stage('Download Dependencies') {
+        when {
+          environment name: 'APP_TYPE', value: 'NODEJS'
+        }
+
+        steps {
+          sh '''
+          npm install
+        '''
+        }
+      }
+
+      stage('Prepare Artifacts') {
+        when {
+          environment name: 'APP_TYPE', value: 'NODEJS'
+        }
+        steps {
+          sh '''
+          zip -r ${COMPONENT}.zip node_modules server.js
         '''
         }
       }
