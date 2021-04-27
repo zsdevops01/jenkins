@@ -29,7 +29,7 @@ def call(Map params = [:]) {
         steps {
           script {
             thing = new nexus()
-            thing.demos
+            thing.demos 'new'
           }
           sh '''
           cd static

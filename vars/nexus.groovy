@@ -4,6 +4,6 @@ def nexus() {
 }
 
 
-def demos() {
+def demos(n1) {
   print 'Demo'
 }
