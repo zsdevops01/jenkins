@@ -13,7 +13,7 @@ def call(Map params = [:]) {
     }
 
     triggers {
-      pollSCM('H/2 * * 1-5')
+      pollSCM('*/2 * * * 1-5')
     }
 
     environment {
