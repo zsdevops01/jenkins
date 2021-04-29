@@ -21,7 +21,7 @@ for(i in component) {
         'scm'(class:'hudson.plugins.git.GitSCM',plugin:'git') {
           'userRemoteConfigs' {
             'hudson.plugins.git.UserRemoteConfig' {
-              'url'("https://github.com/zsdevops01/${i}.git")
+              'url'('https://github.com/zsdevops01/'+${i}+'.git')
               'refspec'('\'+refs/tags/*\':\'refs/remotes/origin/tags/*\'')
             }
           }
