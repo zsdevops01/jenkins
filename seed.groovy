@@ -6,7 +6,7 @@ folder('CI-Pipelines') {
 def component = ["cart", "catalogue"];
 
 for(i in component) {
-  println(i);
+  def j=i
   pipelineJob("test-${i}") {
     configure { flowdefinition ->
       flowdefinition / 'properties' << 'org.jenkinsci.plugins.workflow.job.properties.PipelineTriggersJobProperty' {
@@ -21,7 +21,7 @@ for(i in component) {
         'scm'(class:'hudson.plugins.git.GitSCM',plugin:'git') {
           'userRemoteConfigs' {
             'hudson.plugins.git.UserRemoteConfig' {
-              'url'('https://github.com/zsdevops01/'+${i}+'.git')
+              'url'('https://github.com/zsdevops01/'+${j}+'.git')
               'refspec'('\'+refs/tags/*\':\'refs/remotes/origin/tags/*\'')
             }
           }
