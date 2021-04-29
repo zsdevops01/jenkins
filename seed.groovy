@@ -5,7 +5,8 @@ folder('CI-Pipelines') {
 
 def component = ["cart", "catalogue"];
 
-for (i in 0..1) {
+def count=(component.size()-1)
+for (i in 0..count) {
   def j=component[i]
   pipelineJob("test-${j}") {
     configure { flowdefinition ->
