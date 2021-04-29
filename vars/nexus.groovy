@@ -4,12 +4,14 @@ def nexus() {
 }
 
 def make_artifacts(APP_TYPE, COMPONENT) {
+  get_branch = "env | grep GIT_BRANCH | awk -F / '{print \$NF}'"
+  def get_branch_exec=sh(returnStdout: true, script: get_branch)
   if(APP_TYPE == "NGINX") {
     command = "cd static && zip -r ../${COMPONENT}.zip *"
     def execute_com=sh(returnStdout: true, script: command)
     print execute_com
   } else if(APP_TYPE == "NODEJS") {
-    command = "zip -r ${COMPONENT}.zip node_modules server.js"
+    command = "echo ${get_branch_exec} ; zip -r ${COMPONENT}.zip node_modules server.js"
     def execute_com=sh(returnStdout: true, script: command)
     print execute_com
   } else if(APP_TYPE == "JAVA") {
@@ -26,7 +28,6 @@ def make_artifacts(APP_TYPE, COMPONENT) {
 def code_build(APP_TYPE, COMPONENT) {
   if(APP_TYPE == "NODEJS") {
     //command = "npm install"
-    command = "env"
     def execute_com=sh(returnStdout: true, script: command)
     print execute_com
   } else if(APP_TYPE == "JAVA") {
