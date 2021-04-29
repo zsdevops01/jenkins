@@ -1,25 +1,30 @@
-def nexus() {
-  command = "curl -f -v -u admin:admin123 --upload-file cart.zip http://172.31.14.124:8081/repository/cart/cart1.zip"
+def nexus(COMPONENT) {
+  get_branch = "env | grep GIT_BRANCH | awk -F / '{print \$NF}'"
+  def get_branch_exec=sh(returnStdout: true, script: get_branch)
+  def FILENAME=COMPONENT+'-'+get_branch_exec+'.zip'
+
+  command = "curl -f -v -u admin:admin123 --upload-file ${FILENAME} http://172.31.14.124:8081/repository/${COMPONENT}/${FILENAME}"
   def execute_state=sh(returnStdout: true, script: command)
 }
 
 def make_artifacts(APP_TYPE, COMPONENT) {
   get_branch = "env | grep GIT_BRANCH | awk -F / '{print \$NF}'"
   def get_branch_exec=sh(returnStdout: true, script: get_branch)
+  def FILENAME=COMPONENT+'-'+get_branch_exec+'.zip'
   if(APP_TYPE == "NGINX") {
-    command = "cd static && zip -r ../${COMPONENT}.zip *"
+    command = "cd static && zip -r ../${FILENAME} *"
     def execute_com=sh(returnStdout: true, script: command)
     print execute_com
   } else if(APP_TYPE == "NODEJS") {
-    command = "echo ${get_branch_exec} ; zip -r ${COMPONENT}.zip node_modules server.js"
+    command = "zip -r ${FILENAME} node_modules server.js"
     def execute_com=sh(returnStdout: true, script: command)
     print execute_com
   } else if(APP_TYPE == "JAVA") {
-    command = "cp target/*.jar ${COMPONENT}.jar && zip -r ${COMPONENT}.zip ${COMPONENT}.jar"
+    command = "cp target/*.jar ${COMPONENT}.jar && zip -r ${FILENAME} ${COMPONENT}.jar"
     def execute_com=sh(returnStdout: true, script: command)
     print execute_com
   } else if(APP_TYPE == "PYTHON") {
-    command = "zip -r ${COMPONENT}.zip payment.ini payment.py rabbitmq.py requirements.txt"
+    command = "zip -r ${FILENAME} payment.ini payment.py rabbitmq.py requirements.txt"
     def execute_com=sh(returnStdout: true, script: command)
     print execute_com
   }
