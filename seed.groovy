@@ -11,11 +11,12 @@ pipelineJob('CI-Pipelines/frontend-ci') {
         'userRemoteConfigs' {
           'hudson.plugins.git.UserRemoteConfig' {
             'url'('https://github.com/zsdevops01/frontend.git')
+            'refspec'('\'+refs/tags/*\':\'refs/remotes/origin/tags/*\'')
           }
         }
         'branches' {
           'hudson.plugins.git.BranchSpec' {
-            'name'('*/main')
+            'name'('*/tags/*')
           }
         }
       }
@@ -32,11 +33,12 @@ pipelineJob('CI-Pipelines/catalogue-ci') {
         'userRemoteConfigs' {
           'hudson.plugins.git.UserRemoteConfig' {
             'url'('https://github.com/zsdevops01/catalogue.git')
+            'refspec'('\'+refs/tags/*\':\'refs/remotes/origin/tags/*\'')
           }
         }
         'branches' {
           'hudson.plugins.git.BranchSpec' {
-            'name'('*/main')
+            'name'('*/tags/*')
           }
         }
       }
@@ -75,11 +77,12 @@ pipelineJob('CI-Pipelines/user-ci') {
         'userRemoteConfigs' {
           'hudson.plugins.git.UserRemoteConfig' {
             'url'('https://github.com/zsdevops01/user.git')
+            'refspec'('\'+refs/tags/*\':\'refs/remotes/origin/tags/*\'')
           }
         }
         'branches' {
           'hudson.plugins.git.BranchSpec' {
-            'name'('*/main')
+            'name'('*/tags/*')
           }
         }
       }
@@ -95,12 +98,13 @@ pipelineJob('CI-Pipelines/shipping-ci') {
       'scm'(class:'hudson.plugins.git.GitSCM',plugin:'git') {
         'userRemoteConfigs' {
           'hudson.plugins.git.UserRemoteConfig' {
+            'refspec'('\'+refs/tags/*\':\'refs/remotes/origin/tags/*\'')
             'url'('https://github.com/zsdevops01/shipping.git')
           }
         }
         'branches' {
           'hudson.plugins.git.BranchSpec' {
-            'name'('*/main')
+            'name'('*/tags/*')
           }
         }
       }
@@ -117,11 +121,12 @@ pipelineJob('CI-Pipelines/payment-ci') {
         'userRemoteConfigs' {
           'hudson.plugins.git.UserRemoteConfig' {
             'url'('https://github.com/zsdevops01/payment.git')
+            'refspec'('\'+refs/tags/*\':\'refs/remotes/origin/tags/*\'')
           }
         }
         'branches' {
           'hudson.plugins.git.BranchSpec' {
-            'name'('*/main')
+            'name'('*/tags/*')
           }
         }
       }
