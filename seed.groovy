@@ -3,7 +3,7 @@ folder('CI-Pipelines') {
   description('CI Pipelines')
 }
 
-def component = ["cart", "catalogue"];
+def component = ["cart"];
 
 for(i in component) {
   pipelineJob("test-${i}") {
