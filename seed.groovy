@@ -5,7 +5,7 @@ folder('CI-Pipelines') {
 
 def component = ["cart", "catalogue"];
 
-for (i in 0..component.size()) {
+for (i in 0..1) {
   pipelineJob("test-${component[${i}]}") {
     configure { flowdefinition ->
       flowdefinition / 'properties' << 'org.jenkinsci.plugins.workflow.job.properties.PipelineTriggersJobProperty' {
