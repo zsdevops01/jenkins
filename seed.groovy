@@ -58,7 +58,7 @@ pipelineJob('CI-Pipelines/cart-ci') {
         }
         'branches' {
           'hudson.plugins.git.BranchSpec' {
-            'name'('*/main')
+            'name'('**/tags/**')
           }
         }
       }
