@@ -3,7 +3,7 @@ folder('CI-Pipelines') {
   description('CI Pipelines')
 }
 
-def component = ["cart"];
+def component = ["cart", "catalogue"];
 
 for(i in component) {
   println(i);
