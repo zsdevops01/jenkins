@@ -58,7 +58,7 @@ def call(Map params = [:]) {
       stage('Deploy to Dev Env') {
         steps {
           script {
-            def values = GIT_BRANCH.split('/')
+            def values = "${GIT_BRANCH}".split('/')
             print values
           }
           //build job: 'Deployment Pipeline', parameters: [string(name: 'ENV', value: 'dev'), string(name: 'COMPONENT', value: "${COMPONENT}"), string(name: 'VERSION', value: '0.0.0')]
