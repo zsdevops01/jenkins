@@ -26,8 +26,7 @@ pipeline {
             steps {
                 git branch: 'main', url: 'https://github.com/zsdevops01/ansible.git'
                 sh '''
-                    ls
-                    ansible-playbook -i ../inv roboshop.yml -t ${COMPONENT} -e COMPONENT=${COMPONENT} -e ENV=${ENV} -e APP_VERSION=${VERSION}
+                    ansible-playbook -i inv roboshop.yml -t ${COMPONENT} -e COMPONENT=${COMPONENT} -e ENV=${ENV} -e APP_VERSION=${VERSION}
                 '''
             }
         }
