@@ -1,0 +1,29 @@
+pipeline {
+    agent {
+        label "ANSIBLE"
+    }
+
+    stages {
+
+        stage('Find the Server') {
+            steps {
+                sh 'echo'
+            }
+        }
+        // ENV needs to replaced with appropriate, Need to find how
+        stage('Deploy to DEV Env') {
+            when { ..... }
+            steps {
+                sh 'ansible-playbook .....'
+            }
+        }
+
+        stage('Deploy to PROD Env') {
+            when { ..... }
+            steps {
+                sh 'ansible-playbook .....'
+            }
+        }
+
+    }
+}
