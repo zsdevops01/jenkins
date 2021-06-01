@@ -136,7 +136,7 @@ pipeline {
   stages {
     stage('sample') {
       steps {
-        addShortText text: "INPUT = ${INPUT}"
+        addShortText background: 'green', color: 'black', text: "INPUT = ${INPUT}"
       }
     }
   }
