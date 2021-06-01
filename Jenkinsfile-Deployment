@@ -14,7 +14,7 @@ pipeline {
         stage('Find the Server') {
             steps {
                 sh '''
-                    aws ec2 describe-instances --filters "Name=tag:Name,Values=frontend-dev" --region us-east-1 | jq .Reservations[].Instances[].PrivateIpAddress |xargs -n1 > inv
+                    aws ec2 describe-instances --filters "Name=tag:Name,Values=${COMPONENT}-${ENV}" --region us-east-1 | jq .Reservations[].Instances[].PrivateIpAddress |xargs -n1 > inv
                 '''
             }
         }
