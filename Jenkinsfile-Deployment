@@ -13,7 +13,9 @@ pipeline {
 
         stage('Find the Server') {
             steps {
-                sh 'aws ec2 describe-instances --filters "Name=tag:Name,Values=frontend-dev" --region us-east-1'
+                sh '''
+                    aws ec2 describe-instances --filters "Name=tag:Name,Values=frontend-dev" --region us-east-1 | jq .Reservations[].Instances[].PrivateIpAddress |xargs -n1 > inv
+                '''
             }
         }
 
@@ -22,7 +24,7 @@ pipeline {
                 environment name: 'ENV', value: 'dev'
             }
             steps {
-                sh 'echo ansible-playbook .....'
+                sh 'cat inv'
             }
         }
 
