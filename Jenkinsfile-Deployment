@@ -3,6 +3,10 @@ pipeline {
         label "ANSIBLE"
     }
 
+    parameters {
+        choice(name: 'ENV', choices: ['dev', 'prod' ], description: 'Select Environment')
+    }
+
     stages {
 
         stage('Find the Server') {
@@ -10,18 +14,22 @@ pipeline {
                 sh 'echo'
             }
         }
-        // ENV needs to replaced with appropriate, Need to find how
+
         stage('Deploy to DEV Env') {
-            when { ..... }
+            when {
+                environment name: 'ENV', value: 'dev'
+            }
             steps {
-                sh 'ansible-playbook .....'
+                sh 'echo ansible-playbook .....'
             }
         }
 
         stage('Deploy to PROD Env') {
-            when { ..... }
+            when {
+                environment name: 'ENV', value: 'prod'
+            }
             steps {
-                sh 'ansible-playbook .....'
+                sh 'echo ansible-playbook .....'
             }
         }
 
