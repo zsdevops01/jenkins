@@ -3,6 +3,10 @@ pipeline {
         label "ANSIBLE"
     }
 
+    environment {
+        UBUNTU_SSH_PASSWORD = credentials('UBUNTU_SSH_PASSWORD')
+    }
+
     parameters {
         choice(name: 'ENV', choices: ['dev', 'prod' ], description: 'Select Environment')
         string(name: 'COMPONENT', defaultValue: '', description: 'Which Component to deploy')
@@ -26,7 +30,7 @@ pipeline {
             steps {
                 git branch: 'main', url: 'https://github.com/zsdevops01/ansible.git'
                 sh '''
-                    ansible-playbook -i inv roboshop.yml -t ${COMPONENT} -e COMPONENT=${COMPONENT} -e ENV=${ENV} -e APP_VERSION=${VERSION}
+                    ansible-playbook -i inv roboshop.yml -t ${COMPONENT} -e COMPONENT=${COMPONENT} -e ENV=${ENV} -e APP_VERSION=${VERSION} -e ansible_password=${UBUNTU_SSH_PASSWORD}
                 '''
             }
         }
