@@ -13,7 +13,7 @@ pipeline {
 
         stage('Find the Server') {
             steps {
-                sh 'echo'
+                sh 'aws s3 ls'
             }
         }
 
