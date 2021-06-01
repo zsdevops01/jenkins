@@ -134,9 +134,9 @@
 pipeline {
   agent any
   stages {
-    stage('One') {
+    stage('sample') {
       steps {
-        sh 'env'
+        addShortText background: 'yellow', borderColor: '', color: 'red', link: '', text: 'Hello'
       }
     }
   }
