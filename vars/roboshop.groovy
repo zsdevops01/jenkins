@@ -59,7 +59,7 @@ def call(Map params = [:]) {
         steps {
           script {
             def values = "${GIT_BRANCH}".split('/')
-            print values
+            print "${GIT_BRANCH}"
           }
           //build job: 'Deployment Pipeline', parameters: [string(name: 'ENV', value: 'dev'), string(name: 'COMPONENT', value: "${COMPONENT}"), string(name: 'VERSION', value: '0.0.0')]
         }
