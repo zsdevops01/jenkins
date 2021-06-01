@@ -55,7 +55,9 @@ def call(Map params = [:]) {
       }
 
       stage('Deploy to Dev Env') {
-
+        steps {
+          build job: 'Deployment Pipeline', parameters: [string(name: 'ENV', value: 'dev'), string(name: 'COMPONENT', value: "${COMPONENT}"), string(name: 'VERSION', value: '0.0.0')]
+        }
       }
 
     }
