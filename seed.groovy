@@ -46,7 +46,6 @@ pipelineJob("Deployment Pipeline") {
         'userRemoteConfigs' {
           'hudson.plugins.git.UserRemoteConfig' {
             'url'('https://github.com/zsdevops01/jenkins.git')
-            'refspec'('\'+refs/tags/*\':\'refs/remotes/origin/tags/*\'')
           }
         }
         'branches' {
