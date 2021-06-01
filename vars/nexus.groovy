@@ -5,6 +5,7 @@ def nexus(COMPONENT) {
 
   command = "curl -f -v -u admin:admin123 --upload-file ${FILENAME} http://172.31.14.124:8081/repository/${COMPONENT}/${FILENAME}"
   def execute_state=sh(returnStdout: true, script: command)
+  manager.addShortText("deployed")
 }
 
 def make_artifacts(APP_TYPE, COMPONENT) {
