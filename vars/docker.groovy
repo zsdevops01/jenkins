@@ -6,7 +6,9 @@ def call(Map params = [:]) {
 
   pipeline {
     agent {
-      label "${args.SLAVE_LABEL}"
+      node {
+        label "${args.SLAVE_LABEL}"
+      }
     }
 
     triggers {
