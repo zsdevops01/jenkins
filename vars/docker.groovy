@@ -26,7 +26,7 @@ def call(Map params = [:]) {
 
     stages {
 
-      stage('Build Code & Install Dependencies') {
+      stage('Docker Build') {
         steps {
           script {
             get_branch = "env | grep GIT_BRANCH | awk -F / '{print \$NF}' | xargs echo -n"
@@ -35,6 +35,18 @@ def call(Map params = [:]) {
           sh '''
             aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 734529938452.dkr.ecr.us-east-1.amazonaws.com
             docker build -t 734529938452.dkr.ecr.us-east-1.amazonaws.com/cart:${get_branch_exec} .
+          '''
+        }
+      }
+
+      stage('Docker Push') {
+        steps {
+          script {
+            get_branch = "env | grep GIT_BRANCH | awk -F / '{print \$NF}' | xargs echo -n"
+            env.get_branch_exec=sh(returnStdout: true, script: get_branch)
+          }
+          sh '''
+            docker push 734529938452.dkr.ecr.us-east-1.amazonaws.com/cart:${get_branch_exec}
           '''
         }
       }
