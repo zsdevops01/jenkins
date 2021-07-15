@@ -34,7 +34,7 @@ pipeline {
         stage('Deploy Redis Helm Chart') {
             steps {
                 sh '''
-                    helm upgrade -i redis bitnami/redis
+                    helm upgrade -i redis bitnami/redis --set auth.enabled=false
                 '''
             }
         }
