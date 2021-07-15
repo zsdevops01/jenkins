@@ -26,7 +26,7 @@ pipeline {
         stage('Deploy RabbitMQ Helm Chart') {
             steps {
                 sh '''
-                    helm upgrade -i rabbitmq bitnami/rabbitmq
+                    helm upgrade -i rabbitmq bitnami/rabbitmq || true 
                 '''
             }
         }
