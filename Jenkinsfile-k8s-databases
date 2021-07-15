@@ -42,7 +42,7 @@ pipeline {
         stage('Deploy MySQL Helm Chart') {
             steps {
                 sh '''
-                    helm upgrade -i mysql bitnami/mysql --set auth.rootPassword=password --set image.tag=5.7
+                    helm upgrade -i mysql stable/mysql --set mysqlRootPassword=password --set imageTag=5.7
                 '''
             }
         }
