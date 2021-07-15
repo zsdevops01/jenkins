@@ -1,0 +1,51 @@
+pipeline {
+    agent {
+        label "K8S"
+    }
+
+    stages {
+
+        stage('Install Helm Repo') {
+            steps {
+                sh '''
+                    helm repo add bitnami https://charts.bitnami.com/bitnami
+                    helm repo update
+                '''
+            }
+        }
+
+        stage('Deploy MongoDB Helm Chart') {
+            steps {
+                sh '''
+                    helm upgrade -i mongodb bitnami/mongodb
+                '''
+            }
+        }
+
+        stage('Deploy RabbitMQ Helm Chart') {
+            steps {
+                sh '''
+                    helm upgrade -i mongodb bitnami/rabbitmq
+                '''
+            }
+        }
+
+        stage('Deploy Redis Helm Chart') {
+            steps {
+                sh '''
+                    helm upgrade -i mongodb bitnami/redis
+                '''
+            }
+        }
+
+        stage('Deploy MySQL Helm Chart') {
+            steps {
+                sh '''
+                    helm upgrade -i mongodb bitnami/mysql
+                '''
+            }
+        }
+
+    }
+}
+

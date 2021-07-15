@@ -60,3 +60,28 @@ pipelineJob("Deployment Pipeline") {
   }
 }
 
+folder('Kubernetes') {
+  displayName('Kubernetes')
+  description('Kubernetes')
+}
+
+pipelineJob("Kubernetes/Databases") {
+  configure { flowdefinition ->
+    flowdefinition << delegate.'definition'(class:'org.jenkinsci.plugins.workflow.cps.CpsScmFlowDefinition',plugin:'workflow-cps') {
+      'scm'(class:'hudson.plugins.git.GitSCM',plugin:'git') {
+        'userRemoteConfigs' {
+          'hudson.plugins.git.UserRemoteConfig' {
+            'url'('https://github.com/zsdevops01/jenkins.git')
+          }
+        }
+        'branches' {
+          'hudson.plugins.git.BranchSpec' {
+            'name'('main')
+          }
+        }
+      }
+      'scriptPath'('Jenkinsfile-k8s-databases')
+      'lightweight'(true)
+    }
+  }
+}
