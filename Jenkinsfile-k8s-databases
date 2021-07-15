@@ -26,7 +26,7 @@ pipeline {
         stage('Deploy RabbitMQ Helm Chart') {
             steps {
                 sh '''
-                    helm upgrade -i rabbitmq stable/rabbitmq --set auth.username=roboshop --set auth.password=roboshop123
+                    helm upgrade -i rabbitmq bitnami/rabbitmq
                 '''
             }
         }
