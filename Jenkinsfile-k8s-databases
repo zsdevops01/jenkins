@@ -25,7 +25,7 @@ pipeline {
         stage('Deploy RabbitMQ Helm Chart') {
             steps {
                 sh '''
-                    helm upgrade -i mongodb bitnami/rabbitmq
+                    helm upgrade -i rabbitmq bitnami/rabbitmq
                 '''
             }
         }
@@ -33,7 +33,7 @@ pipeline {
         stage('Deploy Redis Helm Chart') {
             steps {
                 sh '''
-                    helm upgrade -i mongodb bitnami/redis
+                    helm upgrade -i redis bitnami/redis
                 '''
             }
         }
@@ -41,7 +41,7 @@ pipeline {
         stage('Deploy MySQL Helm Chart') {
             steps {
                 sh '''
-                    helm upgrade -i mongodb bitnami/mysql
+                    helm upgrade -i mysql bitnami/mysql
                 '''
             }
         }
