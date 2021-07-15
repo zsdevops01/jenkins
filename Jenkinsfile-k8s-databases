@@ -17,7 +17,7 @@ pipeline {
         stage('Deploy MongoDB Helm Chart') {
             steps {
                 sh '''
-                    helm upgrade -i mongodb bitnami/mongodb
+                    helm upgrade -i mongodb bitnami/mongodb --set auth.enabled=false
                 '''
             }
         }
