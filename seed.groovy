@@ -148,3 +148,108 @@ pipelineJob("Kubernetes/Frontend") {
     }
   }
 }
+
+pipelineJob("Kubernetes/Catalogue") {
+  configure { flowdefinition ->
+    flowdefinition << delegate.'definition'(class:'org.jenkinsci.plugins.workflow.cps.CpsScmFlowDefinition',plugin:'workflow-cps') {
+      'scm'(class:'hudson.plugins.git.GitSCM',plugin:'git') {
+        'userRemoteConfigs' {
+          'hudson.plugins.git.UserRemoteConfig' {
+            'url'('https://github.com/zsdevops01/catalogue.git')
+          }
+        }
+        'branches' {
+          'hudson.plugins.git.BranchSpec' {
+            'name'('main')
+          }
+        }
+      }
+      'scriptPath'('Jenkinsfile-K8S')
+      'lightweight'(true)
+    }
+  }
+}
+
+pipelineJob("Kubernetes/Cart") {
+  configure { flowdefinition ->
+    flowdefinition << delegate.'definition'(class:'org.jenkinsci.plugins.workflow.cps.CpsScmFlowDefinition',plugin:'workflow-cps') {
+      'scm'(class:'hudson.plugins.git.GitSCM',plugin:'git') {
+        'userRemoteConfigs' {
+          'hudson.plugins.git.UserRemoteConfig' {
+            'url'('https://github.com/zsdevops01/cart.git')
+          }
+        }
+        'branches' {
+          'hudson.plugins.git.BranchSpec' {
+            'name'('main')
+          }
+        }
+      }
+      'scriptPath'('Jenkinsfile-K8S')
+      'lightweight'(true)
+    }
+  }
+}
+
+pipelineJob("Kubernetes/User") {
+  configure { flowdefinition ->
+    flowdefinition << delegate.'definition'(class:'org.jenkinsci.plugins.workflow.cps.CpsScmFlowDefinition',plugin:'workflow-cps') {
+      'scm'(class:'hudson.plugins.git.GitSCM',plugin:'git') {
+        'userRemoteConfigs' {
+          'hudson.plugins.git.UserRemoteConfig' {
+            'url'('https://github.com/zsdevops01/user.git')
+          }
+        }
+        'branches' {
+          'hudson.plugins.git.BranchSpec' {
+            'name'('main')
+          }
+        }
+      }
+      'scriptPath'('Jenkinsfile-K8S')
+      'lightweight'(true)
+    }
+  }
+}
+
+pipelineJob("Kubernetes/Shipping") {
+  configure { flowdefinition ->
+    flowdefinition << delegate.'definition'(class:'org.jenkinsci.plugins.workflow.cps.CpsScmFlowDefinition',plugin:'workflow-cps') {
+      'scm'(class:'hudson.plugins.git.GitSCM',plugin:'git') {
+        'userRemoteConfigs' {
+          'hudson.plugins.git.UserRemoteConfig' {
+            'url'('https://github.com/zsdevops01/shipping.git')
+          }
+        }
+        'branches' {
+          'hudson.plugins.git.BranchSpec' {
+            'name'('main')
+          }
+        }
+      }
+      'scriptPath'('Jenkinsfile-K8S')
+      'lightweight'(true)
+    }
+  }
+}
+
+pipelineJob("Kubernetes/Payment") {
+  configure { flowdefinition ->
+    flowdefinition << delegate.'definition'(class:'org.jenkinsci.plugins.workflow.cps.CpsScmFlowDefinition',plugin:'workflow-cps') {
+      'scm'(class:'hudson.plugins.git.GitSCM',plugin:'git') {
+        'userRemoteConfigs' {
+          'hudson.plugins.git.UserRemoteConfig' {
+            'url'('https://github.com/zsdevops01/payment.git')
+          }
+        }
+        'branches' {
+          'hudson.plugins.git.BranchSpec' {
+            'name'('main')
+          }
+        }
+      }
+      'scriptPath'('Jenkinsfile-K8S')
+      'lightweight'(true)
+    }
+  }
+}
