@@ -44,6 +44,7 @@ pipeline {
             steps {
                 sh '''
                     helm upgrade -i mysql stable/mysql --set mysqlRootPassword=password --set imageTag=5.7
+                     kubectl apply -f mysql-schema.yml
                 '''
             }
         }

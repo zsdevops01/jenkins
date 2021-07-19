@@ -1,0 +1,12 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: mysql-schema
+spec:
+  template:
+    spec:
+      containers:
+        - name: schema-loader
+          image: 734529938452.dkr.ecr.us-east-1.amazonaws.com/mysql:main
+      restartPolicy: Never
+  backoffLimit: 4
