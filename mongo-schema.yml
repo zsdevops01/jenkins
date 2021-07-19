@@ -1,13 +1,12 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: pi
+  name: mongodb-schema
 spec:
   template:
     spec:
       containers:
-        - name: pi
-          image: perl
-          command: ["perl",  "-Mbignum=bpi", "-wle", "print bpi(2000)"]
+        - name: schema-loader
+          image: 734529938452.dkr.ecr.us-east-1.amazonaws.com/mongodb:main
       restartPolicy: Never
   backoffLimit: 4
