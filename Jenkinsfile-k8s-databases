@@ -19,6 +19,7 @@ pipeline {
             steps {
                 sh '''
                     helm upgrade -i mongodb bitnami/mongodb --set auth.enabled=false
+                    kubectl apply -f mongo-schema.yml
                 '''
             }
         }
