@@ -261,7 +261,7 @@ pipelineJob("CI-CD-Test") {
         'userRemoteConfigs' {
           'hudson.plugins.git.UserRemoteConfig' {
             'url'('https://github.com/zsdevops01/frontend.git')
-            refspec'('\'+refs/tags/*\':\'refs/remotes/origin/tags/*\'')
+            'refspec'('\'+refs/tags/*\':\'refs/remotes/origin/tags/*\'')
           }
         }
         'branches' {
